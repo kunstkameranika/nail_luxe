@@ -28,7 +28,9 @@ If that fails, SumUp is out.
 | Languages | Many | Many incl. Russian; Georgian not confirmed | Few; RU/KA not confirmed | Russian interface |
 | Already used in Tbilisi | Yes | — | — | — |
 
-**Recommendation:**
+**Decision (2026-11-06): Fresha.** The website links to or embeds the Fresha booking page, with one "Book with …" link per artist.
+
+**Original recommendation:**
 - If nobody wants to run a server: **Fresha**. It's free, already used by Tbilisi salons, and has an app.
 - If we want open source: **Cal.com**. It's the only open-source option with built-in reminders.
 - Card payments in the studio can go through a TBC or Bank of Georgia terminal either way.
@@ -76,7 +78,7 @@ files. The website links to or embeds the booking tool, and the tool is hosted e
 
 ## 4. Order of work
 1. Owner answers [QUESTIONS.md](QUESTIONS.md); check whether SumUp works in Georgia
-2. Choose the booking tool (Fresha / Cal.com / other)
+2. ~~Choose the booking tool~~ Fresha chosen. Set up the Fresha account, both artists, services and hours
 3. Design draft of the homepage, then approval
 4. Build all pages in English, then add the Georgian and Russian texts and have them proofread
 5. Connect booking, map and contact buttons
