@@ -5,12 +5,12 @@ The answers to [QUESTIONS.md](QUESTIONS.md), received 2026-11-07. "⚠" marks so
 ## Brand
 - **Name:** NAIL LUXE (uppercase, Latin letters)
 - **Logo:** `assets/brand/wordmark.jpg` (bronze serif wordmark) and `assets/brand/monogram.jpg` (gold "NL" monogram with a star and a swoosh)
-- **Tagline:** "Your nails, our passion" ⚠ needs Georgian and Russian versions
+- **Tagline:** none for now (dropped 2026-11-07)
 - **Colours:** open to suggestions, taken from the gold/bronze in the logo
 - **Reference sites:** none given
 
 ## Studio
-- **Address:** 4 Petre Iberi St, Tbilisi 0159, Georgia ⚠ the first brief said **4B**, so the exact number needs confirming
+- **Address:** 4B Petre Iberi St, Tbilisi 0159, Georgia (confirmed)
 - **Hours:** every day, 10:00–20:00
 - **Payment:** cash and card, paid after the service, no deposit
 - **Owner:** Nata. She updates prices and photos and answers reviews and messages.
@@ -30,23 +30,27 @@ Telegram/Viber: not specified. Individual shifts: not specified, so the studio h
 ## Services
 One shared price list for both artists. Nail design (დიზაინი, 5 GEL) is **left off** the website and the booking menu.
 
-English and Russian names are drafts by Claude. ⚠ Proofread all three columns.
+English and Russian names were checked against Russian-language salon price lists (Yandex Maps) and English salon menus, and use the wording salons most often use. ⚠ The Georgian column was converted from Latin transliteration and still needs proofreading. Note that salons write both მანიკური and მანიკიური (and პედიკური / პედიკიური).
 
-| # | Georgian | English (draft) | Russian (draft) | Duration | Price |
+| # | Georgian | English | Russian | Duration | Price |
 |---|---|---|---|---|---|
 | 1 | კლასიკური მანიკური | Classic manicure | Классический маникюр | 30 min | 20 GEL |
 | 2 | პედიკური | Pedicure | Педикюр | 60 min | 45 GEL |
-| 3 | გელ-ლაქი მოწესრიგების გარეშე | Gel polish, no manicure | Гель-лак без маникюра | 60 min | 30 GEL |
-| 4 | გელ-ლაქი მოწესრიგებით | Gel polish with manicure | Гель-лак с маникюром | 60 min | 40 GEL |
-| 5 | პედიკური გელ-ლაქით | Pedicure with gel polish | Педикюр с гель-лаком | 60 min | 55 GEL |
-| 6 | პედიკურის გადასმა | Pedicure gel polish refresh ⚠ | Обновление покрытия на педикюре ⚠ | 60 min | 35 GEL |
-| 7 | გამაგრება | Nail strengthening | Укрепление ногтей | 90 min | 55 GEL |
-| 8 | დაგრძელების კორექცია | Extension refill | Коррекция наращивания | 90 min | 65 GEL |
+| 3 | გელ-ლაქი მოწესრიგების გარეშე | Gel polish (no manicure) | Покрытие гель-лаком без маникюра | 60 min | 30 GEL |
+| 4 | გელ-ლაქი მოწესრიგებით | Manicure with gel polish | Маникюр с покрытием гель-лаком | 60 min | 40 GEL |
+| 5 | პედიკური გელ-ლაქით | Pedicure with gel polish | Педикюр с покрытием гель-лаком | 60 min | 55 GEL |
+| 6 | პედიკურის გადასმა | Gel polish on toes (no pedicure) | Покрытие гель-лаком на ногах без педикюра | 60 min | 35 GEL |
+| 7 | გამაგრება | Gel strengthening | Укрепление ногтей гелем | 90 min | 55 GEL |
+| 8 | დაგრძელების კორექცია | Extension refill | Коррекция наращенных ногтей | 90 min | 65 GEL |
 | 9 | დაგრძელება | Nail extensions | Наращивание ногтей | 120 min | 90 GEL |
 | 10 | გელ-ლაქის მოხსნა | Gel polish removal | Снятие гель-лака | 10 min | 5 GEL |
-| 11 | დაგრძელების მოხსნა | Extension removal | Снятие наращивания | 15 min | 10 GEL |
+| 11 | დაგრძელების მოხსნა | Extension removal | Снятие наращенных ногтей | 15 min | 10 GEL |
 
-⚠ #6: does "გადასმა" mean redoing the polish on toes without a full pedicure? The name depends on the answer.
+Why these names:
+- #3–6: Russian price lists say «покрытие гель-лаком», and English menus say "gel polish" for toes and "gel manicure/pedicure" for the full service. #6 is confirmed as redoing gel polish on toes without a full pedicure.
+- #7: «Укрепление ногтей гелем» / "gel strengthening" is the usual salon wording. ⚠ If they strengthen with acrygel or a rubber base, the name changes slightly.
+- #8: Russian lists use «коррекция наращенных ногтей», and English menus use "refill" (UK salons also say "infill").
+- #11: «Снятие наращенных ногтей» is the standard Russian wording.
 
 ## Booking (Fresha)
 - Bookings confirmed instantly, at least 1 hour in advance
