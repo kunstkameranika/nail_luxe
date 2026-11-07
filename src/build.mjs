@@ -13,19 +13,15 @@ const fontsBase = "https://fonts.googleapis.com/css2?family=Onest:wght@400&famil
 const fontsKa = "https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400&family=Noto+Serif+Georgian:wght@300;400&display=swap";
 const fontsKaName = `https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400&text=${encodeURIComponent(t.ka.langName)}&display=swap`;
 
-function bookLink(L, who) {
-  const url = config.fresha[who];
-  if (url) return { href: url, label: L.bookOnline };
-  const a = who === "studio" ? owner : artists.find((x) => x.id === who);
-  return { href: wa(a.phone, L.waText), label: L.bookWhatsApp };
-}
+// Fresha link for the studio or one artist; "#" until config.fresha is filled in.
+const fresha = (who) => config.fresha[who] || "#";
+const freshaAttrs = (who) => (config.fresha[who] ? 'target="_blank" rel="noopener"' : 'data-pending="fresha"');
 
 const ext = 'target="_blank" rel="noopener"';
 
 function page(lang) {
   const L = t[lang];
   const col = serviceCol[lang];
-  const studio = bookLink(L, "studio");
   const alt = config.langs.map((l) => `<link rel="alternate" hreflang="${l}" href="${config.siteUrl}/${l}/">`).join("\n");
   const langNav = config.langs
     .map((l) => (l === lang ? `<a href="../${l}/" aria-current="page" lang="${l}">${t[l].langName}</a>` : `<a href="../${l}/" lang="${l}" hreflang="${l}">${t[l].langName}</a>`))
@@ -42,19 +38,17 @@ function page(lang) {
     .join("\n      ");
 
   const strips = groups
-    .map((g, i) => `<a class="strip" href="#g-${g}" style="--stain: var(--stain-${i + 1})"><span>${esc(L.strips[g])}</span></a>`)
+    .map((g, i) => `<a class="strip" href="#g-${g}" style="--stain: var(--stain-${i + 1})">${esc(L.strips[g])}</a>`)
     .join("");
 
   const artistCards = artists
     .map((a) => {
-      const b = bookLink(L, a.id);
-      const label = L.bookWith[a.id];
       return `<article class="artist stock">
         <h3>${esc(L.names[a.id])}</h3>
         <p class="role">${esc(L.roles[a.id])}</p>
         <p class="phone"><a href="tel:${a.phone}">${a.phoneShown}</a></p>
         <div class="artist-actions">
-          <a class="btn" href="${esc(b.href)}" ${ext}>${esc(label)}</a>
+          <a class="btn" href="${esc(fresha(a.id))}" ${freshaAttrs(a.id)}>${esc(L.bookWith[a.id])}</a>
           <a class="link" href="${esc(wa(a.phone, L.waText))}" ${ext}>WhatsApp</a>
         </div>
       </article>`;
@@ -107,13 +101,13 @@ ${lang === "ka" ? `<link rel="stylesheet" href="${fontsKa}">` : `<link rel="styl
   <div class="container mast-row">
     <nav class="mast-links" aria-label="NAIL LUXE">
       <a href="#prices">${esc(L.nav.prices)}</a>
-      <a href="#artists">${esc(L.nav.artists)}</a>
       <a href="#visit">${esc(L.nav.visit)}</a>
+      <a href="${esc(config.instagram || "#")}" ${config.instagram ? ext : 'data-pending="instagram"'}>Instagram</a>
     </nav>
     <a class="mast-mark" href="./" aria-label="NAIL LUXE"><img src="../assets/brand/wordmark.webp" width="1291" height="139" alt="NAIL LUXE"></a>
     <div class="mast-end">
       <nav class="langs" aria-label="${esc(L.nav.langs)}">${langNav}</nav>
-      <a class="btn btn--small" href="${esc(studio.href)}" ${ext}>${esc(L.nav.book)}</a>
+      <a class="btn btn--small" href="${esc(fresha("studio"))}" ${freshaAttrs("studio")}>${esc(L.nav.book)}</a>
     </div>
   </div>
 </header>
@@ -125,8 +119,8 @@ ${lang === "ka" ? `<link rel="stylesheet" href="${fontsKa}">` : `<link rel="styl
         <h1>${esc(L.h1)}</h1>
         <p class="lead">${esc(L.lead)}</p>
         <div class="hero-actions">
-          <a class="btn" href="${esc(studio.href)}" ${ext}>${esc(studio.label)}</a>
-          ${config.fresha.studio ? `<a class="link" href="${esc(wa(owner.phone, L.waText))}" ${ext}>${esc(L.whatsapp)}</a>` : `<a class="link" href="tel:${owner.phone}">${esc(L.call)} ${owner.phoneShown}</a>`}
+          <a class="btn btn--primary" href="${esc(fresha("studio"))}" ${freshaAttrs("studio")}>${esc(L.bookOnline)}</a>
+          <a class="btn" href="${esc(wa(owner.phone, L.waText))}" ${ext}>${esc(L.bookWhatsApp)}</a>
         </div>
       </div>
       <figure class="print stock">
@@ -176,18 +170,6 @@ ${lang === "ka" ? `<link rel="stylesheet" href="${fontsKa}">` : `<link rel="styl
     </div>
   </section>
 
-  <section class="close air-zone" id="book">
-    <div class="container close-grid">
-      <div>
-        <h2>${esc(L.closeH)}</h2>
-        <p class="lead">${esc(L.closeLead)}</p>
-      </div>
-      <ul class="tickets">
-        <li><a class="ticket stock" href="${esc(studio.href)}" ${ext}><span class="ticket-name">${esc(L.anyArtist)}</span><span class="ticket-line">${esc(L.anyLine)}</span></a></li>
-        ${artists.map((a) => `<li><a class="ticket stock" href="${esc(bookLink(L, a.id).href)}" ${ext}><span class="ticket-name">${esc(L.names[a.id])}</span><span class="ticket-line">${esc(L.artistLine)}</span></a></li>`).join("\n        ")}
-      </ul>
-    </div>
-  </section>
 </main>
 
 <footer class="foot">

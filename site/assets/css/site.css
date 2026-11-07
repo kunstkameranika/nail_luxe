@@ -1,9 +1,10 @@
 /* Hallmark · shape: Catalogue-led one-pager (draw swap: Long Document hides the booking action; job is book) · genre: editorial · theme: Atelier (deal 1/3, seed nail-luxe-luxury-nail-592d·a6c207c2·2026-11-07·r0) · job: book · draw: 41c783
- * hero: Banner · nav: masthead · footer: mast · imagery: none, the user's monogram as the hero print; photo slots wait for the studio's own photographs · signature: the NL monogram matted on cotton stock beside the head, polish-stained strips indexing the price list
+ * hero: Banner · nav: masthead · footer: mast · imagery: none, the user's monogram as the hero print; photo slots wait for the studio's own photographs · signature: the NL monogram matted on cotton stock beside the head, polish-stained tabs indexing the price list
  * axes: light/roman-serif/cool · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R5 V4 · weakest: S, no photographs of the work yet; led with the real monogram and the real price list instead of off-subject library photos */
 /* waive 37: four families because the page is trilingual; Noto Serif/Sans Georgian only cover Georgian glyphs behind Spectral and Onest, one role each */
 /* waive 79: Banner posture; the space under the hero actions is the prices section opening above the fold, as the draw asked */
+/* waive theme-controls: one ink-filled primary (Book now) so it reads first beside the hairline WhatsApp button; Atelier keeps hairline controls elsewhere */
 /* waive theme-face: Sentient and Hanken Grotesk have no Cyrillic or Georgian; Spectral 300 and Onest 400 keep the light-serif-over-grotesk voice in all three scripts */
 @import url("./tokens.css");
 @import url("./base.css");
@@ -29,6 +30,8 @@ h3 { font-weight: var(--serif-small); color: var(--color-ink); }
 .btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; transition: none; }
 .btn[aria-disabled="true"] { border-color: var(--color-rule); color: var(--color-muted); background: transparent; cursor: not-allowed; transform: none; }
 .btn--small { min-height: 44px; padding: 0 var(--space-md); font-size: var(--text-sm); }
+.btn--primary { background: var(--color-ink); color: var(--color-paper); }
+.btn--primary:hover { background: var(--color-ink-2); border-color: var(--color-ink-2); }
 .btn--quiet { border-color: var(--color-rule); }
 .btn--quiet:hover { border-color: var(--color-ink); }
 .link { color: var(--color-ink); text-decoration: underline; text-decoration-color: var(--color-accent); text-decoration-thickness: 1px; text-underline-offset: 0.28em; transition: text-decoration-color var(--dur-short) var(--ease-out); }
@@ -67,13 +70,10 @@ h3 { font-weight: var(--serif-small); color: var(--color-ink); }
 .prices-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--gap-columns); align-items: start; }
 .prices-head { position: sticky; top: var(--space-xl); display: grid; gap: var(--space-lg); }
 .prices-head .lead { max-width: 30ch; }
-.rail { display: flex; gap: var(--space-md); margin-top: var(--space-lg); padding-top: var(--space-md); border-top: var(--rule-hair) solid var(--color-ink); }
-.strip { position: relative; display: flex; align-items: flex-start; justify-content: center; width: 52px; height: 220px; padding-top: var(--space-md); text-decoration: none; color: var(--color-ink); font-size: var(--text-sm); background: var(--fibre) 0 0 / 220px, linear-gradient(to top, color-mix(in oklab, var(--stain) 80%, var(--color-card)) 0%, color-mix(in oklab, var(--stain) 35%, var(--color-card)) 26%, var(--color-card) 46%); clip-path: polygon(0 0, 100% 0, 100% 88%, 50% 100%, 0 88%); filter: drop-shadow(var(--shadow-strip)); transition: transform var(--dur-long) var(--ease-out); }
-.strip::before { content: ""; position: absolute; top: calc(var(--space-md) * -1 - 4px); left: 50%; width: 1px; height: calc(var(--space-md) + 4px); background: var(--color-ink); }
-.strip span { writing-mode: vertical-rl; white-space: nowrap; }
-.lang-ka .strip span, .lang-ru .strip span { font-size: var(--text-xs); }
-.strip:hover { transform: translateY(8px); }
-.strip:active { transform: translateY(12px); }
+.rail { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-md); }
+.strip { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--space-xl) 0 var(--space-md); color: var(--color-ink); text-decoration: none; font-size: var(--text-sm); white-space: nowrap; background: var(--fibre) 0 0 / 220px, linear-gradient(to right, var(--color-card) 55%, color-mix(in oklab, var(--stain) 35%, var(--color-card)) 75%, color-mix(in oklab, var(--stain) 80%, var(--color-card)) 100%); clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%); filter: drop-shadow(var(--shadow-strip)); transition: transform var(--dur-short) var(--ease-out); }
+.strip:hover { transform: translateX(4px); }
+.strip:active { transform: translateX(6px); }
 
 .menu { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
 .menu thead th { padding: 0 0 var(--space-sm); font: 400 var(--text-sm)/1.3 var(--font-body); color: var(--color-muted); text-align: left; border-bottom: var(--rule-head) solid var(--color-ink); }
@@ -107,18 +107,6 @@ h3 { font-weight: var(--serif-small); color: var(--color-ink); }
 .ruled dt { color: var(--color-muted); font-size: var(--text-sm); padding-top: 0.2em; }
 .ruled dd { margin: 0; font: var(--serif-small) var(--text-lg)/1.35 var(--font-display); color: var(--color-ink); }
 
-/* Close: the booking again, over the air */
-.close { padding-block: var(--section-gap) var(--section-gap); }
-.close-grid { display: grid; gap: var(--space-2xl); }
-.close .lead { margin-top: var(--space-md); }
-.tickets { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap-columns); }
-.ticket { display: grid; align-content: space-between; gap: var(--space-xl); min-height: 240px; padding: var(--space-2xl); color: var(--color-ink); text-decoration: none; transition: transform var(--dur-short) var(--ease-out); }
-.ticket:hover { transform: translateY(-4px); }
-.ticket:active { transform: translateY(0); }
-.ticket:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; transition: none; }
-.ticket-name { font: var(--display-weight) var(--text-display-s)/1.02 var(--font-display); letter-spacing: var(--tracking-display); }
-.ticket-line { color: var(--color-ink-2); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 0.28em; }
-
 /* Footer: a mast, the wordmark large over the facts */
 .foot { padding-block: var(--space-3xl) var(--space-xl); border-top: var(--rule-hair) solid var(--color-rule); font-size: var(--text-sm); color: var(--color-ink-2); }
 .foot-mark { width: min(100%, 880px); height: auto; }
@@ -136,9 +124,6 @@ h3 { font-weight: var(--serif-small); color: var(--color-ink); }
   .hero-grid, .prices-grid, .visit-grid, .close-grid, .split-head { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-xl); }
   .print { justify-self: start; width: min(100%, 300px); padding: var(--space-xl) var(--space-xl) var(--space-md); }
   .prices-head { position: static; }
-  .strip { height: 170px; }
-  .tickets { grid-template-columns: minmax(0, 1fr); }
-  .ticket { min-height: 0; padding: var(--space-xl); }
   .foot-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 40rem) {
@@ -153,10 +138,9 @@ h3 { font-weight: var(--serif-small); color: var(--color-ink); }
   .menu tbody th[scope="row"] { font-size: var(--text-md); }
   .menu td.price { font-size: var(--text-md); }
   .menu td { padding-left: var(--space-sm); }
-  .strip { width: 44px; }
   .foot-row { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .strip, .btn, .link, .ticket { transition: none; }
-  .strip:hover, .strip:active, .btn:active, .ticket:hover { transform: none; }
+  .strip, .btn, .link { transition: none; }
+  .strip:hover, .strip:active, .btn:active { transform: none; }
 }
