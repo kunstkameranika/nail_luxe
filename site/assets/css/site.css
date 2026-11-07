@@ -1,5 +1,5 @@
 /* Hallmark · shape: Catalogue-led one-pager (draw swap: Long Document hides the booking action; job is book) · genre: editorial · theme: Atelier (deal 1/3, seed nail-luxe-luxury-nail-592d·a6c207c2·2026-11-07·r0) · job: book · draw: 41c783
- * hero: Banner · nav: masthead · footer: mast · imagery: none, the user's monogram as the hero print; photo slots wait for the studio's own photographs · signature: the NL monogram matted on cotton stock beside the head, polish-stained tabs indexing the price list
+ * hero: Banner · nav: masthead · footer: colophon block (address, phones, languages; the wordmark stays in the masthead only) · imagery: none, the user's monogram as the hero print; photo slots wait for the studio's own photographs · signature: the NL monogram matted on cotton stock beside the head, polish-stained tabs indexing the price list
  * axes: light/roman-serif/cool · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R5 V4 · weakest: S, no photographs of the work yet; led with the real monogram and the real price list instead of off-subject library photos */
 /* waive 37: four families because the page is trilingual; Noto Serif/Sans Georgian only cover Georgian glyphs behind Spectral and Onest, one role each */
@@ -66,7 +66,7 @@ h3 { font-weight: var(--serif-small); color: var(--color-ink); }
 .pencil { flex: 0 0 56px; height: 1px; background: var(--color-pencil); opacity: 0.6; }
 
 /* Prices: the head and the strips on four columns, the list on eight */
-.prices { padding-block: var(--section-gap-s) var(--section-gap); }
+.prices { padding-block: var(--section-gap-s) var(--space-2xl); }
 .prices-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--gap-columns); align-items: start; }
 .prices-head { position: sticky; top: var(--space-xl); display: grid; gap: var(--space-lg); }
 .prices-head .lead { max-width: 30ch; }
@@ -87,10 +87,10 @@ h3 { font-weight: var(--serif-small); color: var(--color-ink); }
 .menu tbody:target tr.group th { color: var(--color-ink); }
 
 /* Artists: two cotton cards */
-.artists { padding-block: var(--section-gap) var(--section-gap-s); }
-.split-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--gap-columns); align-items: end; margin-bottom: var(--space-2xl); }
+.artists { padding-block: var(--space-3xl) var(--section-gap-s); }
+.artists-head { margin-bottom: var(--space-xl); }
 .artist-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-columns); }
-.artist { padding: var(--space-3xl) var(--space-2xl) var(--space-2xl); display: grid; align-content: start; gap: var(--space-sm); min-height: 360px; }
+.artist { padding: var(--space-2xl); display: grid; align-content: start; gap: var(--space-sm); }
 .artist h3 { font-size: var(--text-display-s); font-weight: var(--display-weight); line-height: 1.02; }
 .artist .role { color: var(--color-muted); }
 .phone { margin-top: var(--space-lg); font: var(--serif-small) var(--text-title)/1.2 var(--font-display); font-variant-numeric: tabular-nums; }
@@ -108,12 +108,11 @@ h3 { font-weight: var(--serif-small); color: var(--color-ink); }
 .ruled dd { margin: 0; font: var(--serif-small) var(--text-lg)/1.35 var(--font-display); color: var(--color-ink); }
 
 /* Footer: a mast, the wordmark large over the facts */
-.foot { padding-block: var(--space-3xl) var(--space-xl); border-top: var(--rule-hair) solid var(--color-rule); font-size: var(--text-sm); color: var(--color-ink-2); }
-.foot-mark { width: min(100%, 880px); height: auto; }
-.foot-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap-columns); margin-top: var(--space-2xl); padding-top: var(--space-lg); border-top: var(--rule-hair) solid var(--color-rule); }
+.foot { padding-block: var(--space-xl) var(--space-xl); border-top: var(--rule-hair) solid var(--color-rule); font-size: var(--text-sm); color: var(--color-ink-2); }
+.foot-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap-columns); }
 .foot a { color: var(--color-ink-2); text-decoration: none; }
 .foot a:hover { color: var(--color-ink); text-decoration: underline; text-decoration-color: var(--color-accent); }
-.legal { margin-top: var(--space-2xl); color: var(--color-muted); }
+.legal { margin-top: var(--space-xl); color: var(--color-muted); }
 
 @media (max-width: 60rem) {
   .mast-row { grid-template-columns: auto minmax(0, 1fr); min-height: 64px; }
@@ -121,7 +120,7 @@ h3 { font-weight: var(--serif-small); color: var(--color-ink); }
   .mast-mark { justify-self: start; }
   .mast-end { gap: var(--space-md); }
   .hero { padding-block: var(--space-2xl) var(--space-2xl); }
-  .hero-grid, .prices-grid, .visit-grid, .close-grid, .split-head { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-xl); }
+  .hero-grid, .prices-grid, .visit-grid, .close-grid { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-xl); }
   .print { justify-self: start; width: min(100%, 300px); padding: var(--space-xl) var(--space-xl) var(--space-md); }
   .prices-head { position: static; }
   .foot-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
