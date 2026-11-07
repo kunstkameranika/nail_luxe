@@ -147,10 +147,7 @@ ${lang === "ka" ? `<link rel="stylesheet" href="${fontsKa}">` : `<link rel="styl
 
   <section class="artists" id="artists">
     <div class="container">
-      <div class="split-head">
-        <h2>${esc(L.artistsH)}</h2>
-        <p class="lead">${esc(L.artistsLead)}</p>
-      </div>
+      <h2 class="artists-head">${esc(L.artistsH)}</h2>
       <div class="artist-grid">
       ${artistCards}
       </div>
@@ -174,7 +171,6 @@ ${lang === "ka" ? `<link rel="stylesheet" href="${fontsKa}">` : `<link rel="styl
 
 <footer class="foot">
   <div class="container">
-    <img class="foot-mark" src="../assets/brand/wordmark.webp" width="1291" height="139" alt="NAIL LUXE" loading="lazy">
     <div class="foot-row">
       <p>${esc(L.address)}</p>
       <p>${artists.map((a) => `<a href="tel:${a.phone}">${a.phoneShown}</a>`).join("<br>")}</p>
