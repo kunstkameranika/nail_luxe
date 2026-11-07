@@ -44,7 +44,7 @@ Write answers directly under each question (or send them and Claude will fill th
 ## For the project lead (you)
 
 27. ⭐ What's the budget? The domain costs a small yearly fee, a booking server about $5–10 a month, and SMS/WhatsApp reminders are charged per message.
-28. ⭐ Booking: run Cal.com on our own server, use hosted Cal.com, or use Fresha?
+28. ~~Booking: Cal.com or Fresha?~~ **Fresha** (decided 2026-11-06)
 29. Which domain name, e.g. `nailluxe.ge`? Should Claude check if it's free?
 30. Who will proofread the Georgian and Russian texts?
 31. Should the GitHub account and repository stay yours, or move to your sister's?

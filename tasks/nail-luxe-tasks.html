@@ -1,0 +1,165 @@
+<title>Nail Luxe Tasks</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: one narrow column, phases as plain sections, tasks as rows. Owner chips filter. */
+:root {
+  --bg: #f7f5f6; --surface: #ffffff; --fg: #2a2328; --muted: #776c73; --line: #e6e0e4;
+  --accent: #8a3b5c; --accent-soft: #f3e6ec; --done: #a49aa0;
+  --display: "Young Serif", Georgia, serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1b171a; --surface: #241f23; --fg: #eee7eb; --muted: #a2959c; --line: #3a3238;
+  --accent: #e08bab; --accent-soft: #3a2630; --done: #6f646a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #1b171a; --surface: #241f23; --fg: #eee7eb; --muted: #a2959c; --line: #3a3238;
+  --accent: #e08bab; --accent-soft: #3a2630; --done: #6f646a; color-scheme: dark }
+html, body { overflow-x: clip; }
+body { background: var(--bg); color: var(--fg); font: 15px/1.5 var(--body); }
+.wrap { max-width: 680px; margin: 0 auto; padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font: 400 30px/1.15 var(--display); margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 4px 0 0; }
+.bar { display: flex; align-items: center; gap: 12px; margin: 20px 0 8px; }
+.track { flex: 1; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.fill { height: 100%; background: var(--accent); width: 0; transition: width .3s ease; }
+.count { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px; white-space: nowrap; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 8px; }
+.chip { font: 500 13px var(--body); border: 1px solid var(--line); background: var(--surface); color: var(--fg);
+  padding: 5px 12px; border-radius: 999px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.note { font-size: 13px; color: var(--muted); margin: 8px 0; }
+section { margin-top: 28px; }
+h2 { font: 400 19px/1.3 var(--display); margin: 0 0 6px; display: flex; gap: 10px; align-items: baseline; }
+h2 small { font: 400 13px var(--body); color: var(--muted); font-variant-numeric: tabular-nums; }
+ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+li input[type=checkbox] { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--accent); flex: none; cursor: pointer; }
+.t { flex: 1; min-width: 0; overflow-wrap: break-word; }
+li.is-done .t { color: var(--done); text-decoration: line-through; }
+.who { font-size: 12px; font-weight: 600; letter-spacing: .03em; color: var(--accent); background: var(--accent-soft);
+  padding: 2px 8px; border-radius: 4px; white-space: nowrap; flex: none; }
+.del { border: 0; background: none; color: var(--muted); cursor: pointer; font: 13px var(--body); padding: 2px 4px; flex: none; }
+.del.confirm { color: var(--accent); font-weight: 600; }
+form { margin-top: 36px; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto auto auto; gap: 8px; }
+form h3 { grid-column: 1 / -1; margin: 0 0 4px; font: 600 14px var(--body); }
+input[type=text], select { font: 15px var(--body); color: var(--fg); background: var(--bg); border: 1px solid var(--line);
+  border-radius: 6px; padding: 8px 10px; min-width: 0; }
+.add { font: 600 14px var(--body); background: var(--accent); color: var(--surface); border: 0; border-radius: 6px; padding: 8px 16px; cursor: pointer; }
+@media (max-width: 560px) { form { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } #f-title { grid-column: 1 / -1; } .add { grid-column: 1 / -1; } }
+:is(button, input, select):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; transition: none; }
+.empty { color: var(--muted); padding: 24px 0; }
+@media (prefers-reduced-motion: reduce) { .fill { transition: none; } }
+</style>
+
+<div class="wrap">
+  <h1>Nail Luxe Tasks</h1>
+  <p class="sub">Website, booking and listings for the studio at 4B Petre Iberi St, Tbilisi.</p>
+  <div class="bar"><div class="track"><div class="fill" id="fill"></div></div><span class="count" id="count">Loading…</span></div>
+  <div class="chips" id="chips" role="group" aria-label="Filter by person"></div>
+  <p class="note" id="note" hidden></p>
+  <div id="list"><p class="empty">Loading tasks…</p></div>
+
+  <form id="form" hidden>
+    <h3>Add a task</h3>
+    <input type="text" id="f-title" placeholder="What needs doing?" required maxlength="200" aria-label="Task">
+    <select id="f-phase" aria-label="Phase"></select>
+    <select id="f-owner" aria-label="Who"></select>
+    <button class="add" type="submit">Add</button>
+  </form>
+</div>
+
+<script>
+const PHASES = ["Answers & decisions", "Fresha booking", "Content", "Design & build", "Launch", "Get found"];
+const OWNERS = ["Sister", "Me", "Claude", "Together"];
+let tasks = [], filter = "All", col = null, canWrite = false, pendingDelete = null;
+const $ = id => document.getElementById(id);
+
+function el(tag, props = {}, kids = []) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(props)) k in n ? n[k] = v : n.setAttribute(k, v);
+  for (const c of kids) n.append(c);
+  return n;
+}
+
+function renderChips() {
+  $("chips").replaceChildren(...["All", ...OWNERS].map(o => {
+    const b = el("button", { type: "button", className: "chip", textContent: o });
+    b.setAttribute("aria-pressed", String(o === filter));
+    b.onclick = () => { filter = o; renderChips(); render(); };
+    return b;
+  }));
+}
+
+function render() {
+  const done = tasks.filter(t => t.done).length;
+  $("count").textContent = tasks.length ? `${done} of ${tasks.length} done` : "No tasks yet";
+  $("fill").style.width = tasks.length ? (done / tasks.length * 100) + "%" : "0";
+  const shown = tasks.filter(t => filter === "All" || t.owner === filter);
+  if (!tasks.length) { $("list").replaceChildren(el("p", { className: "empty", textContent: "No tasks yet. Add the first one with the form below." })); return; }
+  if (!shown.length) { $("list").replaceChildren(el("p", { className: "empty", textContent: `Nothing assigned to ${filter}.` })); return; }
+  const secs = [];
+  PHASES.forEach((name, i) => {
+    const items = shown.filter(t => (t.phase ?? 0) === i).sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+    if (!items.length) return;
+    const d = items.filter(t => t.done).length;
+    secs.push(el("section", {}, [
+      el("h2", {}, [name, el("small", { textContent: `${d}/${items.length}` })]),
+      el("ul", {}, items.map(row))
+    ]));
+  });
+  $("list").replaceChildren(...secs);
+}
+
+function row(t) {
+  const cb = el("input", { type: "checkbox", checked: !!t.done, disabled: !canWrite, id: "cb-" + t.id });
+  cb.setAttribute("aria-label", t.title);
+  cb.onchange = () => col.doc(t.id).update({ done: cb.checked }).catch(err => showNote("Couldn't save that change. " + (err?.message || "")));
+  const kids = [cb, el("label", { className: "t", htmlFor: "cb-" + t.id, textContent: t.title }), el("span", { className: "who", textContent: t.owner || "—" })];
+  if (canWrite) {
+    const del = el("button", { type: "button", className: "del" + (pendingDelete === t.id ? " confirm" : ""), textContent: pendingDelete === t.id ? "Remove?" : "×" });
+    del.setAttribute("aria-label", "Remove task");
+    del.onclick = () => {
+      if (pendingDelete === t.id) { pendingDelete = null; col.doc(t.id).delete().catch(() => showNote("Couldn't remove that task.")); }
+      else { pendingDelete = t.id; render(); setTimeout(() => { if (pendingDelete === t.id) { pendingDelete = null; render(); } }, 4000); }
+    };
+    kids.push(del);
+  }
+  return el("li", { className: t.done ? "is-done" : "" }, kids);
+}
+
+function showNote(msg) { $("note").textContent = msg; $("note").hidden = !msg; }
+
+$("f-phase").replaceChildren(...PHASES.map((p, i) => el("option", { value: i, textContent: p })));
+$("f-owner").replaceChildren(...OWNERS.map(o => el("option", { value: o, textContent: o })));
+$("form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const title = $("f-title").value.trim();
+  if (!title || !col) return;
+  const phase = Number($("f-phase").value);
+  const order = Math.max(0, ...tasks.filter(t => t.phase === phase).map(t => t.order ?? 0)) + 1;
+  try { await col.add({ title, phase, owner: $("f-owner").value, done: false, order }); $("f-title").value = ""; }
+  catch (err) { showNote("Couldn't add the task. " + (err?.message || "")); }
+});
+
+renderChips();
+
+(async () => {
+  const db = await window.claude?.use?.("db");
+  if (!db) { $("count").textContent = ""; $("list").replaceChildren(el("p", { className: "empty", textContent: "Sign in to claude.ai to see the task list." })); return; }
+  const user = await window.claude.use("user");
+  canWrite = user ? (await user.can("data.write")) !== false : false;
+  $("form").hidden = !canWrite;
+  if (!canWrite) showNote("You can view this list. Ask the owner for edit access to tick tasks off.");
+  col = db.collection("tasks");
+  const timer = setTimeout(() => showNote("The task list can't be reached yet. It will appear when the connection comes back."), 10000);
+  col.onSnapshot(snap => {
+    if (!snap.metadata.fromCache) { clearTimeout(timer); if ($("note").textContent.startsWith("The task list")) showNote(canWrite ? "" : $("note").textContent); }
+    tasks = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    render();
+  }, err => { clearTimeout(timer); showNote("The task list stopped updating: " + (err?.message || "unknown error") + ". Reload the page to try again."); });
+})();
+</script>

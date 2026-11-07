@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kunstkameranika.github.io/nail_luxe/sitemap.xml

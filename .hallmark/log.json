@@ -1,0 +1,31 @@
+[
+ {
+  "shape": "catalogue one-pager",
+  "theme": "atelier",
+  "axes": "light/roman-serif/cool",
+  "hero": "Banner",
+  "nav": "masthead",
+  "footer": "mast",
+  "imagery": "none, user monogram print",
+  "photos": [],
+  "entry": "hero",
+  "fingerprint": "banner-print/rows-strips/cards2/band-ruled/tickets3/mast",
+  "sections": [
+   "hero",
+   "prices rows + strips",
+   "artists two cards",
+   "visit band",
+   "close tickets",
+   "footer mast"
+  ],
+  "signature": "NL monogram matted on cotton stock; polish-stained strips index the price list",
+  "waived": [
+   "37",
+   "79",
+   "theme-face"
+  ],
+  "prompt": "Nail Luxe nail studio Tbilisi, trilingual, Fresha booking",
+  "date": "2026-11-07",
+  "mode": "build"
+ }
+]

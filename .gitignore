@@ -1,0 +1,3 @@
+site/**/.hallmark/
+.hallmark/shots/
+node_modules/
